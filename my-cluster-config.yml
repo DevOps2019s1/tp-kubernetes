@@ -13,6 +13,7 @@ spec:
     - containerPort: 80
 # GO APP
   - name: go    
+<<<<<<< HEAD
     image: greglebreton/go_app
     ports:
     - containerPort: 8080
@@ -21,3 +22,18 @@ spec:
   - name: docker-hub-cred
   dnsPolicy: ClusterFirst
   restartPolicy: Always
+=======
+    image: greglebreton/appligo:golang
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "0.25"
+      limits:
+        memory: "128Mi"
+        cpu: "0.5"
+     ports:
+     - containerPort: 8080
+
+  imagePullSecrets:
+  - name: docker-hub-cred
+>>>>>>> acab75f86cfe25141a36584ee65454f6dbab85c4
