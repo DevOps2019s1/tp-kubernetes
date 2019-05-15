@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: henryl39/nginx:firsttry
+    image: henryl39/nginx-config
     command:
     - /usr/sbin/nginx
     - -g
