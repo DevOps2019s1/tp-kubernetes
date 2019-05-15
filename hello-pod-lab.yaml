@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mux
+  name: hello-pod-lab
+  namespace: apps-dev
+spec:
+  imagePullSecrets:
+  - name: myregistry-secret
+  containers:
+  - name: hello-app-rp
+    image: loicrangon/hello-app-rp:1.0.0
+    command:
+    - /usr/sbin/nginx
+    - -g
+    - daemon off;
+    - -q
+    ports:
+    - containerPort: 80
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: hello-app
+    image: loicrangon/hello-app:1.0.0
+    command:
+    - /go/bin/test 
+    - --port
+    - "8080"
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
