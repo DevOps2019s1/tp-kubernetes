@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata: 
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: ninjasimov/hello-app-reversep:1.0.1
+        ports:
+          - containerPort: 80
+      - name: hello-app
+        image: ninjasimov/hello-webapp:1.0.1
+        ports:
+          - containerPort: 8080
+      imagePullSecrets:
+      - name: helloapp-tp
