@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  namespace: apps-dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      env: lab
+  template:
+    metadata:
+      labels:
+        app: hello
+        env: lab
+      name: hamza-pod
+    spec:
+      imagePullSecrets:
+      - name: hamzaregistry-secret
+      containers:
+      - image: badbeerus/hello-app-rp:1.0.0
+        name: hello-app-rp
+        command: ["nginx"]
+        args: ["-g", "daemon off;", "-q"]   
+        ports:
+        - containerPort: 80
+      - image: badbeerus/hello-app:1.0.0
+        name: hello-app   
+        ports:
+        - containerPort: 8080

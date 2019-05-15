@@ -9,8 +9,8 @@ spec:
   containers:
   - image: badbeerus/hello-app-rp:1.0.0
     name: hello-app-rp
-    command: [nginx]
-    args: ["- /usr/sbin/nginx", "-g", "daemon off", "-q"]
+    command: ["nginx"]
+    args: ["-g", "daemon off;", "-q"]
     resources:
       requests:
         memory: "64Mi"
@@ -31,4 +31,3 @@ spec:
         cpu: "250m"    
     ports:
     - containerPort: 8080
-restartPolicy: Always
