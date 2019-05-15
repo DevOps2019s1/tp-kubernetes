@@ -17,7 +17,7 @@ spec:
         memory: "64Mi"
         cpu: "250m"
     command: ["nginx"]
-    args: ["/usr/sbin/nginx", "-g", "daemon off;", "-q"]
+    args: ["-g", "daemon off;", "-q"]
     ports:
     - containerPort: 80
   - name: tp2-go
@@ -31,5 +31,3 @@ spec:
         cpu: "250m" 
     ports:
     - containerPort: 8080
-  # dnsPolicy: ClusterFirst
-  restartPolicy: Always
