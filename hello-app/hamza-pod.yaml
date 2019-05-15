@@ -31,4 +31,4 @@ spec:
         cpu: "250m"    
     ports:
     - containerPort: 8080
-restartPolicy: Always
+  restartPolicy: Always
