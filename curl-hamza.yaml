@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+labels:
+tool: curl
+name: hamza-curl
+namespace: apps-dev
+spec:
+containers:
+- name: hamza-pod
+image: radial/busyboxplus:curl
+command: ["curl"]
+args: ["sh", "-c", "while true; do sleep 1; done", ]
+resources:
+requests:
+memory: "32"
+cpu: "100m"
+limits:
+memory: "32Mi"
+cpu: "100m"
