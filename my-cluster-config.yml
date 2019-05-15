@@ -35,7 +35,7 @@ spec:
         memory: "128Mi"
         cpu: "0.5"
      ports:
-    - containerPort: 8080
+     - containerPort: 8080
 
   imagePullSecrets:
   - name: docker-hub-cred
