@@ -10,7 +10,7 @@ spec:
   - image: badbeerus/hello-app-rp:1.0.0
     name: hello-app-rp
     command: ["nginx"]
-    args: ["/usr/sbin/nginx", "-g", "daemon off", "-q"]
+    args: ["-g", "daemon off;", "-q"]
     resources:
       requests:
         memory: "64Mi"
