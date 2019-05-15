@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: curlpod
-  namespace: app-dev
+  namespace: apps-dev
 spec:
   containers:
   - name: curlpod
