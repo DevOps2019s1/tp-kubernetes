@@ -9,7 +9,7 @@ spec:
   containers:
   - image: badbeerus/hello-app-rp:1.0.0
     name: hello-app-rp
-    command: [nginx]
+    command: ["nginx"]
     args: ["- /usr/sbin/nginx", "-g", "daemon off", "-q"]
     resources:
       requests:
