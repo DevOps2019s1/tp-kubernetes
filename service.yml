@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: hello
+  name: apdep
+  namespace: app2
+spec:
+  selector:
+    app: hello
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort
