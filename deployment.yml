@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: hello-deploy
+  name: hello-deploy-2
   namespace: app
 spec:
   replicas: 3
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: bloodychaton/tpmulti2:nginx
+        image: nginx
         resources:
           requests:
             memory: "64Mi"
@@ -30,7 +30,10 @@ spec:
         ports:
         - containerPort: 80
         command: ["nginx"]
-        args: ["-g", "daemon off;", "-q"]  
+        args: ["-g", "daemon off;", "-q"]
+        volumeMounts:
+          - name:  configs
+            mountPath: /etc/nginx/   
       - name: hello-app
         image: bloodychaton/tpmulti2:hello-app
         # resources:
@@ -44,4 +47,8 @@ spec:
         - containerPort: 8080
       imagePullSecrets:
         - name: regcred
+      volumes:
+        - name: configs
+          configMap: 
+            name: configmap
       restartPolicy: Always
