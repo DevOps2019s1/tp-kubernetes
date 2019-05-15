@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-go
+  template:
+    metadata:
+      name: hello-pod
+      namespace: apps-dev
+      labels:
+        app: nginx-go
+    spec:
+      containers:
+      - name: nginx
+        image: henryl39/nginx:firsttry
+        command:
+        - /usr/sbin/nginx
+        - -g
+        - daemon off;
+        - -q
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+
+      - name: go
+        image: henryl39/go:firsttry
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /go/bin/test 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - cat
+            - /go/bin/test
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+      imagePullSecrets:
+      - name: regcred
