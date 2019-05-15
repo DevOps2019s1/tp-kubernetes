@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      env: dev
+  template:
+    metadata:
+      name: hello-pod
+      namespace: app
+      labels:
+        app: hello
+        env: dev
+    spec:
+      containers:
+      - name: nginx
+        image: bloodychaton/tpmulti2:nginx
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        command: ["nginx"]
+        args: ["-g", "daemon off;", "-q"]  
+      - name: hello-app
+        image: bloodychaton/tpmulti2:hello-app
+        # resources:
+        #   requests:
+        #     memory: "100Mi"
+        #     cpu: "1"
+        #   limits:
+        #     memory: "200Mi"
+        #     cpu: "1"
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always

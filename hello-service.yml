@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello
+    env: dev
+  name: hello-svc-lab
+spec:
+  ports:
+  - name: port-1
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: port-2
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: hello
+    env: dev
+  type: NodePort
+status:
+  loadBalancer: {}
