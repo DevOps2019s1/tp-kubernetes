@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  namespace: app-dev
+spec:
+  containers:
+  - name: nginx
+    image: bloodychaton/tpmulti2:nginx
+    # resources:
+    #   requests:
+    #     memory: "100Mi"
+    #     cpu: "1"
+    #   limits:
+    #     memory: "200Mi"
+    #     cpu: "1"
+    ports:
+    - containerPort: 80
+    command: ["nginx"]
+    args: ["-g", "daemon off;", "-q"]  
+  - name: hello-app
+    image: bloodychaton/tpmulti2:hello-app
+    # resources:
+    #   requests:
+    #     memory: "100Mi"
+    #     cpu: "1"
+    #   limits:
+    #     memory: "200Mi"
+    #     cpu: "1"
+    ports:
+    - containerPort: 8080
+  imagePullSecrets:
+    - name: regcred
