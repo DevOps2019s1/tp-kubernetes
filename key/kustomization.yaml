@@ -1,0 +1,8 @@
+secretGenerator:
+- name: tp3secretkey
+  type: docker-registry
+  literals:
+  - docker-server=https://index.docker.io/v1/
+  - docker-username=somafairey
+  - docker-password=
+  - docker-email=soma.fairey@gmail.com
